@@ -928,8 +928,9 @@ function Expand-WebRequest {
                      }
                     else
 		       {
-                         Get-ChildItem $Path_Old | Where-Object PSIsContainer -EQ $true | ForEach-Object {Move-Item (Join-Path $Path_Old $_) $Path_New}
-                         if($MineName -eq "lyclMiner"){
+                         //Get-ChildItem $Path_Old | Where-Object PSIsContainer -EQ $true | ForEach-Object {Move-Item (Join-Path $Path_Old $_) $Path_New}
+                         Get-ChildItem $Path_Old | Where-Object PSIsContainer -EQ $true | ForEach-Object {Move-Item $Path_New}
+			if($MineName -eq "lyclMiner"){
                          Set-Location $Path_New
                          Start-Process "./lyclMiner" -ArgumentList "-g lyclMiner.conf" -Wait
                          Set-Location (Split-Path $script:MyInvocation.MyCommand.Path)
